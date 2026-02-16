@@ -208,54 +208,6 @@ void SimpleEQAudioProcessor::updateCoefficients(Coefficients &old, const Coeffic
     *old = *replacements;
 }
 
-template <typename ChainType, typename CoefficientType>
-void SimpleEQAudioProcessor::updateLowCut(ChainType& lowCutChannel, const CoefficientType& cutCoefficients, const Slope& lowCutSlope){
-    lowCutChannel.template setBypassed<0>(true);
-    lowCutChannel.template setBypassed<1>(true);
-    lowCutChannel.template setBypassed<2>(true);
-    lowCutChannel.template setBypassed<3>(true);
-
-    switch( lowCutSlope )
-    {
-        case Slope_12:
-        {
-            *lowCutChannel.template get<0>().coefficients = *cutCoefficients[0];
-            lowCutChannel.template setBypassed<0>(false);
-            break;
-        }
-        case Slope_24:
-        {
-            *lowCutChannel.template get<0>().coefficients = *cutCoefficients[0];
-            lowCutChannel.template setBypassed<0>(false);
-            *lowCutChannel.template get<1>().coefficients = *cutCoefficients[1];
-            lowCutChannel.template setBypassed<1>(false);
-            break;
-        }
-        case Slope_36:
-        {
-            *lowCutChannel.template get<0>().coefficients = *cutCoefficients[0];
-            lowCutChannel.template setBypassed<0>(false);
-            *lowCutChannel.template get<1>().coefficients = *cutCoefficients[1];
-            lowCutChannel.template setBypassed<1>(false);
-            *lowCutChannel.template get<2>().coefficients = *cutCoefficients[2];
-            lowCutChannel.template setBypassed<2>(false);
-            break;
-        }
-        case Slope_48:
-        {
-            *lowCutChannel.template get<0>().coefficients = *cutCoefficients[0];
-            lowCutChannel.template setBypassed<0>(false);
-            *lowCutChannel.template get<1>().coefficients = *cutCoefficients[1];
-            lowCutChannel.template setBypassed<1>(false);
-            *lowCutChannel.template get<2>().coefficients = *cutCoefficients[2];
-            lowCutChannel.template setBypassed<2>(false);
-            *lowCutChannel.template get<3>().coefficients = *cutCoefficients[3];
-            lowCutChannel.template setBypassed<3>(false);
-            break;
-        }
-    }
-}
-
 //==============================================================================
 bool SimpleEQAudioProcessor::hasEditor() const
 {
