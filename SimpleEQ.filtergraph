@@ -5,7 +5,7 @@
     <PLUGIN name="Audio Input" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="246006c0"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
-            numOutputs="2" isShell="0" hasARAExtension="0" uid="246006c0"/>
+            numOutputs="1" isShell="0" hasARAExtension="0" uid="246006c0"/>
     <STATE>0.</STATE>
     <LAYOUT>
       <INPUTS>
@@ -39,7 +39,7 @@
     <STATE>0.</STATE>
     <LAYOUT>
       <INPUTS>
-        <BUS index="0" layout="L R"/>
+        <BUS index="0" layout="C"/>
       </INPUTS>
       <OUTPUTS>
         <BUS index="0" layout="disabled"/>
@@ -65,10 +65,10 @@
           uiLastY_Normal="385" uiopen_Normal="1">
     <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
             version="1.0.0" file="/Users/andrewvarghese/Library/Audio/Plug-Ins/VST3/SimpleEQ.vst3"
-            uniqueId="fa99d31f" isInstrument="0" fileTime="19c43162202" infoUpdateTime="19c43231144"
+            uniqueId="fa99d31f" isInstrument="0" fileTime="19c431a7848" infoUpdateTime="19c6d146166"
             numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="acf8a8d2"/>
-    <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
+    <STATE>628.VMjLgrl....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LCN23BTEwlXmAiUYoWUrIVdA4hKAIlKTETRUAUSAAkKBolQY4BQ1MTQlYkVscVLWkVUGMVYYwlXqUzQtDSQFEFLUYjKAolKA4hKt3hKt3BZSMDQt.UQpQUPvPjKAgDTZoVPP4BTT4hVuMlQZUVSVMld3.iXxgiQhsVPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDY1PEYWLgICNvfELQIyUrkzUYcWPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKM4RPtPUPIUETMEDTtHjZFkkKDY2PEYWLgICNvfELQIyU4cWLgYWUF4RLEYTXvTkQtDjZtDjKt3hKt3hKt3hKt3BTEoFUAACQtDDRPokZAAkKKQkKhsVQwnUYYwlXqUzQtDSQFEFLUYjKAolKA4hKt3hKt3hXGIDQt.UQpQUPvPjKAgDTZoVPP4xRT4hXqUTLZU1XVg0azXjKwTjQgASUF4RPp4RPt3hKt3hKt3hKt3hKPUjZTEDLD4RPHAkVpEDTt3DUtH1ZEEiVkUzUic1cVokdqcjKwTjQgASUF4RPp4RPt3hKt3hKt3hcqLjKt3hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQF4RPDYFTzDzUXkWSG4RPDYmKtnWPt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgEOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>
       <INPUTS>
         <BUS index="0" layout="L R"/>
@@ -82,7 +82,7 @@
           uiLastY_Normal="383" uiopen_Normal="1">
     <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
             manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
-            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19c43231145"
+            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="19c6d146167"
             numInputs="0" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="6163676e"/>
     <STATE>572.hAGaoMGcv.C1AHv.DTfAGfPBJr.Gc3wGgvUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPgxvzM3vCPDQFXYTZrUlSg0VYWIUYmk1atMmWIM2TkwVYiQWYjYTZrU1WP3zKUMWYxM2Kg4FYxU1c1ElbmgVYyU1KDU1bqQ2av8RPtQlbkcWS0MWZi8BQJ8hTg41YowVXsfVZvg1av0hL1zhcyzRagMGckIWYj4xcgYWnRP8DTTgEWfQFZ3kTkcVZu4FQuU1bL81avokTkcVZu4FQgQWXeAADIM2TkwVYiQWYjIUYmk1atokTkcVZu4lSg0VYH7DDvA..........f+kU...X...................XiaTP..........PXtcVZrEVKnkFbn8FbsHiMA....zVXyQG......................................eNzAA..........aY+L......PBZ4TY2AhTkcVZu4VBRDlYvwFD.HQX0claQCBDVYTZrUFHwfUUtQWZzwVYjA.B.jA.l.vJ.jD.QAPV.3E.vAPc.nG.6APe.PH.MBPk.PJ.0Cv8A.P.ODfFAzR.3DPNAvZ.sF.tAja.9F.vATb.HGvy........BD..........h...................AfM</STATE>
@@ -94,7 +94,6 @@
     </LAYOUT>
   </FILTER>
   <CONNECTION srcFilter="5" srcChannel="0" dstFilter="3" dstChannel="0"/>
-  <CONNECTION srcFilter="5" srcChannel="1" dstFilter="3" dstChannel="1"/>
   <CONNECTION srcFilter="6" srcChannel="0" dstFilter="5" dstChannel="0"/>
   <CONNECTION srcFilter="6" srcChannel="1" dstFilter="5" dstChannel="1"/>
 </FILTERGRAPH>
