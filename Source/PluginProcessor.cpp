@@ -167,6 +167,14 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     rightChain.process(rightContext);
 }
 
+Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate, float safeFreq)
+{
+    return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
+                                                               safeFreq,
+                                                               chainSettings.peakQuality,
+                                                               juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
+}
+
 void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings& chainSettings){
     
     auto sampleRate = getSampleRate();
@@ -175,17 +183,13 @@ void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings& chainSettings
     // This ensures that even at 24kHz, the freq is capped at ~11,760Hz
     auto safeFreq = std::min(chainSettings.peakFreq, (float)sampleRate * 0.49f);
     
-    auto peakCoefficients = juce::dsp::IIR::Coefficients<float>::makePeakFilter(
-        sampleRate,
-        safeFreq,
-        chainSettings.peakQuality,
-        juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
+    auto peakCoefficients = makePeakFilter(chainSettings, sampleRate, safeFreq);
     
     updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients,peakCoefficients);
     updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients,peakCoefficients);
 }
 
-void SimpleEQAudioProcessor::updateCoefficients(Coefficients &old, const Coefficients &replacements)
+void updateCoefficients(Coefficients &old, const Coefficients &replacements)
 {
     *old = *replacements;
 }
