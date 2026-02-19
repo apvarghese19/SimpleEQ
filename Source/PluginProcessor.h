@@ -42,8 +42,58 @@ using Coefficients = Filter::CoefficientsPtr;
 
 void updateCoefficients(Coefficients &old, const Coefficients &replacements);
 
-Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate, float safeFreq);
+Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate);
 
+template<int Index, typename ChainType, typename CoefficientType>
+void update(ChainType& chain, const CoefficientType& coefficients)
+{
+    updateCoefficients(chain.template get<Index>().coefficients, coefficients[Index]);
+    chain.template setBypassed<Index>(false);
+}
+
+template <typename ChainType, typename CoefficientType>
+void updateCutFilter(ChainType& lowCutChannel, const CoefficientType& cutCoefficients, const Slope& lowCutSlope){
+    lowCutChannel.template setBypassed<0>(true);
+    lowCutChannel.template setBypassed<1>(true);
+    lowCutChannel.template setBypassed<2>(true);
+    lowCutChannel.template setBypassed<3>(true);
+
+    switch( lowCutSlope )
+    {
+        case Slope_48:
+        {
+            update<3>(lowCutChannel,cutCoefficients);
+        }
+        case Slope_36:
+        {
+            update<2>(lowCutChannel,cutCoefficients);
+        }
+        case Slope_24:
+        {
+            update<1>(lowCutChannel,cutCoefficients);
+        }
+        case Slope_12:
+        {
+            update<0>(lowCutChannel,cutCoefficients);
+        }
+    }
+}
+
+inline auto makeLowCutFilter(const ChainSettings& chainSettings, double sampleRate)
+{
+    auto safeLowCut = juce::jlimit(20.f, static_cast<float>(sampleRate * 0.49), chainSettings.lowCutFreq);
+    return juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(safeLowCut,
+                                                                                        sampleRate,
+                                                                                        2 * (chainSettings.lowCutSlope + 1));
+}
+
+inline auto makeHighCutFilter(const ChainSettings& chainSettings, double sampleRate)
+{
+    auto safeHighCut = juce::jlimit(20.f, static_cast<float>(sampleRate * 0.49), chainSettings.highCutFreq);
+    return juce::dsp::FilterDesign<float>::designIIRLowpassHighOrderButterworthMethod(safeHighCut,
+                                                                                                            sampleRate,
+                                                                                                            2 * (chainSettings.highCutSlope + 1));
+}
 //==============================================================================
 /**
 */
@@ -95,41 +145,6 @@ private:
     MonoChain leftChain, rightChain;
     
     void updatePeakFilter(const ChainSettings& chainSettings);
-    
-    template<int Index, typename ChainType, typename CoefficientType>
-    void update(ChainType& chain, const CoefficientType& coefficients)
-    {
-        updateCoefficients(chain.template get<Index>().coefficients, coefficients[Index]);
-        chain.template setBypassed<Index>(false);
-    }
-
-    template <typename ChainType, typename CoefficientType>
-    void updateCutFilter(ChainType& lowCutChannel, const CoefficientType& cutCoefficients, const Slope& lowCutSlope){
-        lowCutChannel.template setBypassed<0>(true);
-        lowCutChannel.template setBypassed<1>(true);
-        lowCutChannel.template setBypassed<2>(true);
-        lowCutChannel.template setBypassed<3>(true);
-
-        switch( lowCutSlope )
-        {
-            case Slope_48:
-            {
-                update<3>(lowCutChannel,cutCoefficients);
-            }
-            case Slope_36:
-            {
-                update<2>(lowCutChannel,cutCoefficients);
-            }
-            case Slope_24:
-            {
-                update<1>(lowCutChannel,cutCoefficients);
-            }
-            case Slope_12:
-            {
-                update<0>(lowCutChannel,cutCoefficients);
-            }
-        }
-    }
     
     void updateLowCutFilters(const ChainSettings& chainSettings);
     
